@@ -38,6 +38,8 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 #maincontent {
   background-color: #f3f3f3;
   min-height: 100%;
+  display: inline-flex;
+  flex-direction: column;
 }
 #footer {
   background-color: #444;
@@ -54,6 +56,7 @@ nav {
   height: 80px;
   background-color: #252831;
   text-align:center;
+  display: inline-flex;
 }
 nav h1 {
   margin: auto;
@@ -102,6 +105,7 @@ nav h1 a {
   height: 400px;
   width: 100%;
   background-color: #ccc;
+  display: flex;
 }
 /* ====================== Restaurant Filtering ====================== */
 .filter-options {
@@ -109,6 +113,7 @@ nav h1 a {
   height: 50px;
   background-color: #3397DB;
   align-items: center;
+  display: inline-flex;
 }
 .filter-options h2 {
   color: white;
@@ -136,6 +141,8 @@ nav h1 a {
   margin: 0;
   padding: 30px 15px 60px;
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
 }
 #restaurants-list li {
   background-color: #fff;
@@ -146,6 +153,7 @@ nav h1 a {
   padding: 0 30px 25px;
   text-align: left;
   width: 270px;
+  flex-grow: 1;
 }
 #restaurants-list .restaurant-img {
   background-color: #ccc;
@@ -205,7 +213,7 @@ nav h1 a {
 .inside #footer {
   bottom: 0;
   position: absolute;
-  width: 50%;
+  width: 100%;
 }
 #restaurant-name {
   color: #f18200;
@@ -272,4 +280,21 @@ nav h1 a {
 }
 #restaurant-hours td {
   color: #666;
+}
+
+@media (max-width: 320px) {
+
+}
+
+/* Media query for medium screens  */
+
+@media (min-width: 321px) and (max-width: 660px) {
+
+
+}
+
+/* Tablets and larger screens */
+
+@media (min-width: 768px) {
+
 }

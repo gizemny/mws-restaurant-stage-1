@@ -4,6 +4,55 @@ let restaurants,
 var newMap
 var markers = []
 
+// Register service worker  via https://github.com/ireade/boilerplate-service-worker/blob/gh-pages/src/js/app.js
+if ('serviceWorker' in navigator) {
+  
+  navigator.serviceWorker
+    .register('./service-worker.js', {scope: './'})
+    .then(function(registration) {
+      console.log('service worker registered', registration);
+    })
+    .catch(function(err) {
+      console.log('Service Worker failed to register', err);
+    })
+
+  }
+
+// Function to perform HTTP request
+var get = function (url) {
+  return new Promise(function (resolve, reject) {
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          var result = xhr.responseText
+          result = JSON.parse(result);
+          resolve(result);
+        } else {
+          reject(xhr);
+        }
+      }
+    };
+
+    xhr.open("GET", url, true);
+    xhr.send();
+
+  });
+};
+
+// get('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}')
+//   .then(function (response) {
+//     // There is an issue with the image being pulled from the API, so using a different one instead
+//     document.getElementsByClassName('targetImage').src = "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}";
+
+//   })
+//   .catch(function (err) {
+//     console.log("Error", err);
+//   })
+
+
+
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
@@ -78,7 +127,7 @@ initMap = () => {
         scrollWheelZoom: false
       });
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}', {
-    mapboxToken: '<your MAPBOX API KEY HERE>',
+    mapboxToken: 'pk.eyJ1IjoidHVya2lzaCIsImEiOiJjamtrZ2R0N3YxcWJnM2tzNnF0a2tkbW9lIn0.w8ZlU4tVxI8QnrxuJ0oXoA',
     maxZoom: 18,
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
       '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
