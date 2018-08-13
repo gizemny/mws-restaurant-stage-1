@@ -10,7 +10,8 @@ body,td,th,p{
 body {
 	background-color: #fdfdfd;
 	margin: 0;
-	position:relative;
+  position:relative;
+  min-width: 370px;
 }
 ul, li {
 	font-family: Arial, Helvetica, sans-serif;
@@ -38,7 +39,9 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 #maincontent {
   background-color: #f3f3f3;
   min-height: 100%;
-}
+  max-width: 1800px;
+  margin: 0 auto;
+  }
 #footer {
   background-color: #444;
   color: #aaa;
@@ -100,10 +103,10 @@ nav h1 a {
 }
 /* ====================== Map ====================== */
 #map {
+  margin: 0 auto;
   height: 400px;
   width: 100%;
   background-color: #ccc;
-  display: flex;
 }
 /* ====================== Restaurant Filtering ====================== */
 .filter-options {
@@ -136,30 +139,32 @@ nav h1 a {
 #restaurants-list {
   background-color: #f3f3f3;
   list-style: outside none none;
-  margin: 0;
+  margin: 0 auto;
   padding: 30px 15px 60px;
   text-align: center;
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 80%;
 }
 #restaurants-list li {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1 0 200px;
   background-color: #fff;
   border: 2px solid #ccc;
+  box-sizing: border-box;
   font-family: Arial,sans-serif;
-  margin: 15px;
+  margin: 5px;
   min-height: 380px;
-  padding: 0 30px 25px;
-  text-align: left;
-  width: 270px;
-  
+  width: calc(32% - 24px);
 }
 #restaurants-list .restaurant-img {
   background-color: #ccc;
   display: block;
   margin: 0;
   max-width: 100%;
-  min-height: 248px;
   min-width: 100%;
 }
 #restaurants-list li h1 {
@@ -284,15 +289,19 @@ nav h1 a {
   color: #666;
 }
 
+@media screen and (max-device-width: 576px) {
+  /* home */
+  #restaurants-list li {
+    flex: 1 0 400px;
+    margin: 25px 5px
+  }
+}
 
 /* Small screens */
-@media screen and (max-width: 767px) {
+@media screen and (min-device-width: 577px) and (max-device-width: 767px) {
   /* home */
-  #restaurants-list {
-    width: 100%;
-  }
   #restaurants-list li {
-    width: calc(50% - 24px);
+    flex: 1 0 300px;
   }
   /* restaurant details */
   #restaurant-container {
@@ -318,9 +327,4 @@ nav h1 a {
   #reviews-container h2{
     text-align: center;
   }
-}
-
-/* Tablets and larger screens */
-@media screen and (min-width: 768px) {
-
 }
